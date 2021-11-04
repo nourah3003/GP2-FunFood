@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gp3funfood/ParentPage.dart';
 import 'package:gp3funfood/SignupPage.dart';
 import 'package:gp3funfood/firebases.dart';
 import 'package:gp3funfood/resetPassword.dart';
@@ -75,9 +76,10 @@ class login extends StatelessWidget {
                     fireb.error(context, "Please fill the required field");
 
                   }
-
-
-                }, child: Text("Login")),
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Parentpage()))  ;
+                  
+                }, 
+              child: Text("Login")),
             TextButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>SignupPage()));
             },
