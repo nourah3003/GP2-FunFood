@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gp3funfood/ParentPage.dart';
 import 'package:gp3funfood/firebases.dart';
 import 'package:gp3funfood/login.dart';
 
@@ -72,12 +73,11 @@ class SignupPage extends StatelessWidget {
                 onPressed: (){
                   if(EmailController.text.isNotEmpty && PasswordController.text.isNotEmpty && UsernameController.text.isNotEmpty){
                    fireb.createUser(EmailController.text, UsernameController.text, PasswordController.text, context);
-                  }else if(PasswordController.text.length < 8){
-                    fireb.error(context, "The Password must be at least 8 charcters");
                   }
                   else{
                     fireb.error(context, "Please fill the required field");
                   }
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>Parentpage()))  ;
                 },
                 child: Text("Sign up")),
             TextButton(
