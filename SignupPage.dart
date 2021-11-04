@@ -71,13 +71,16 @@ class SignupPage extends StatelessWidget {
                   backgroundColor: Colors.indigoAccent[400],
                 ),
                 onPressed: (){
-                  if(EmailController.text.isNotEmpty && PasswordController.text.isNotEmpty && UsernameController.text.isNotEmpty){
-                   fireb.createUser(EmailController.text, UsernameController.text, PasswordController.text, context);
+                  if(EmailController.text.isNotEmpty && PasswordController.text.isNotEmpty && UsernameController.text.isNotEmpty && PasswordController.text.length >= 8) {
+                    fireb.createUser(EmailController.text, UsernameController.text,PasswordController.text, context);
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => Parentpage()));
                   }
-                  else{
-                    fireb.error(context, "Please fill the required field");
+                  else if(EmailController.text.isEmpty || PasswordController.text.isEmpty || UsernameController.text.isEmpty){
+                      fireb.error(context, "Please fill the required field");
+                    }
+                   else if(PasswordController.text.length < 8) {
+                    fireb.error(context, "The Password must be at least 8 charcters");
                   }
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>Parentpage()))  ;
                 },
                 child: Text("Sign up")),
             TextButton(
