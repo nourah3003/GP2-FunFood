@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gp3funfood/ParentPage.dart';
 import 'package:gp3funfood/SignupPage.dart';
@@ -6,8 +7,10 @@ import 'package:gp3funfood/resetPassword.dart';
 
 class login extends StatelessWidget {
   firebases fireb = firebases();
+  User? user = FirebaseAuth.instance.currentUser;
   TextEditingController EmailController = TextEditingController();
   TextEditingController PasswordController = TextEditingController();
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -72,11 +75,11 @@ class login extends StatelessWidget {
                 onPressed: (){
                   if(EmailController.text.isNotEmpty && PasswordController.text.isNotEmpty) {
                     fireb.loginUser(EmailController.text,PasswordController.text,context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Parentpage()));
                   }else{
                     fireb.error(context, "Please fill the required field");
 
                   }
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Parentpage()))  ;
                   
                 }, 
               child: Text("Login")),
