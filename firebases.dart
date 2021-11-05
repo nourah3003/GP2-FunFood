@@ -15,9 +15,9 @@ final auth = FirebaseAuth.instance;
   }
   loginUser(email , password,context)async{
     try{
-      await auth.signInWithEmailAndPassword(email: email, password: password);//.then((value){
-      //Navigator.push(context, MaterialPageRoute(builder: (context)=>ParentPage()))  ;
-     // });
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>ParentPage())) ;
+     
 
     }catch(e){
       error(context, e);
