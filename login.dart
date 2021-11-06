@@ -26,6 +26,12 @@ class login extends StatelessWidget {
                     bottomRight: Radius.circular(45),
                     bottomLeft: Radius.circular(45)),
                 color: Colors.grey.withOpacity(0.10),
+                gradient: LinearGradient(
+                    colors: [
+                      Colors.blueAccent,
+                      Colors.lime,
+                    ]
+                ),
               ),
               child: Center(
                 child: Text("Login" ,
