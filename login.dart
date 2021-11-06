@@ -38,6 +38,7 @@ class login extends StatelessWidget {
               child: TextField(
                 controller: EmailController,
                 decoration: InputDecoration(
+                  icon: Icon(Icons.email),
                     labelText: "Enter Email..",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))
@@ -49,6 +50,7 @@ class login extends StatelessWidget {
               child: TextField(
                 controller: PasswordController,
                 decoration: InputDecoration(
+                  icon: Icon(Icons.lock),
                     labelText: "Enter Password..",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))
