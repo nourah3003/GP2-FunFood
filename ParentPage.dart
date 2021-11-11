@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gp3funfood/ChoseAdd.dart';
+import 'package:gp3funfood/ChoseDelete.dart';
 
 class Parentpage extends StatelessWidget {
 
@@ -30,7 +32,9 @@ class Parentpage extends StatelessWidget {
                  height: 100,
                  child: RaisedButton(
                    padding: EdgeInsets.symmetric(vertical: 8,horizontal: 30),
-                   onPressed: (){},
+                   onPressed: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => ChoseAdd()));
+                   },
                    color: Colors.deepPurple,
                    shape: RoundedRectangleBorder(
                      borderRadius: BorderRadius.all(Radius.circular(30))
@@ -45,13 +49,16 @@ class Parentpage extends StatelessWidget {
                       height: 100,
                       child: RaisedButton(
                         padding: EdgeInsets.symmetric(vertical: 8,horizontal: 30),
-                        onPressed: (){},
-                        color: Colors.cyan,
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ChoseDelete()));
+
+                        },
+                        color: Colors.deepPurple,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30))
                         ),
                         child: Text("Delete fruit or vegetable" ,
-                          style: TextStyle(color: Colors.white70 ,fontSize: 25,fontStyle:FontStyle.italic),),
+                          style: TextStyle(color: Colors.lime ,fontSize: 25,fontStyle:FontStyle.italic),),
                       ),
                     ),
               SizedBox(height: 40),
@@ -63,12 +70,12 @@ class Parentpage extends StatelessWidget {
 
                         onPressed: (){},
 
-                        color: Colors.blueGrey,
+                        color: Colors.deepPurple,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30))
                         ),
                         child: Text("Edit fruits or vegetables" ,
-                          style: TextStyle(color: Colors.grey ,fontSize: 25,fontStyle:FontStyle.italic),),
+                          style: TextStyle(color: Colors.lime ,fontSize: 25,fontStyle:FontStyle.italic),),
                       ),
                     ),
               SizedBox(height: 40),
@@ -80,12 +87,12 @@ class Parentpage extends StatelessWidget {
 
                   onPressed: (){},
 
-                  color: Colors.deepOrangeAccent,
+                  color: Colors.deepPurple,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))
                   ),
                   child: Text("Track of servings" ,
-                    style: TextStyle(color: Colors.brown ,fontSize: 25,fontStyle:FontStyle.italic),),
+                    style: TextStyle(color: Colors.lime ,fontSize: 25,fontStyle:FontStyle.italic),),
                 ),
               ),
 ],
