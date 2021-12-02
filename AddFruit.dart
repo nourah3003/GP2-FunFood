@@ -17,9 +17,29 @@ class _HomeState extends State<AddFruit> {
   TextEditingController name = TextEditingController();
   TextEditingController benfit = TextEditingController();
   final firbase = FirebaseFirestore.instance;
+  
+  alertDialog( BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Done'),
+            content: Text('The vegetable was successfully added'),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+  
   create()async{
     try{
-    await firbase.collection("users").doc("Fruits").set({
+    await firbase.collection("Fruits").add({
       "name":name.text,
       "benefit":benfit.text
     });
@@ -121,6 +141,9 @@ class _HomeState extends State<AddFruit> {
                         create();
                         name.clear();
                         benfit.clear();
+                        alertDialog(
+                            context,
+                       );
                       }
                     },
                     child: Text("Add")),
