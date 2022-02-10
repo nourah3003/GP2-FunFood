@@ -174,12 +174,9 @@ class _EditFruitsState extends State<EditFruits> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   ),
-                 // trailing: Image.network(
-                   // doc['imageUrl'],
-                  //  height: 100,
-                  //  fit: BoxFit.cover,
-                   // width: 100,
-                 // ),
+                 
+                   fit: BoxFit.cover,
+                  
                 );
               }
             );
