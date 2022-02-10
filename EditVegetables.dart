@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:gp3funfood/ChoseEdit.dart';
 import 'package:gp3funfood/ParentPage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditVegetables extends StatefulWidget {
 
@@ -13,12 +17,33 @@ class _EditFruitsState extends State<EditVegetables> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController benefitController = TextEditingController();
-  // TextEditingController imageUrlController = TextEditingController();
+  TextEditingController imageUrlController = TextEditingController();
 
   final firbase = FirebaseFirestore.instance;
+  String imageUrl ="";
 
+  Future<void> getImage() async {
+    final _storage = FirebaseStorage.instance;
+    final _picker = ImagePicker();
+    PickedFile image;
 
+    image = (await _picker.getImage(source: ImageSource.gallery))!;
+    var file = File(image.path);
 
+    if (image != null) {
+      //Upload to Firebase
+      var snapshot = await _storage.ref()
+          .child('Ii/image')
+          .putFile(file);
+      var downloadUrl = await snapshot.ref.getDownloadURL();
+
+      setState(() {
+        imageUrl = downloadUrl;
+      });
+    } else {
+      print('No Path Received');
+    }
+  }
 
   _buildTextField(TextEditingController controller, String labelText){
     return Container(
@@ -36,8 +61,6 @@ class _EditFruitsState extends State<EditVegetables> {
       ),
     );
   }
-
-//CollectionReference ref = FirebaseFirestore.instance.collection('Fruits');
 
   @override
   Widget build(BuildContext context) {
@@ -85,9 +108,10 @@ class _EditFruitsState extends State<EditVegetables> {
         centerTitle: true,
       ),
 
+
       body: StreamBuilder<QuerySnapshot>(
 
-        stream: firbase.collection("Vegetables").snapshots(),
+      stream: firbase.collection("Vegetables").snapshots(),
         builder: (context,snapshot){
           if (snapshot.hasData){
             return ListView.builder(
@@ -105,7 +129,7 @@ class _EditFruitsState extends State<EditVegetables> {
                       onPressed: (){
                         nameController.text = doc['name'];
                         benefitController.text = doc['benefit'];
-                        //  imageUrlController.text = doc['ImageUrl'];
+                        imageUrlController.text = doc['image'];
 
 
 
@@ -124,12 +148,33 @@ class _EditFruitsState extends State<EditVegetables> {
                                       ),
                                       _buildTextField(benefitController, 'benefit:'),
                                       SizedBox(
-                                        height: 20,
+                                        height: 10,
                                       ),
-                                      //  _buildTextField(imageUrlController, 'ImageUrl:'),
+                                      // _buildTextField(imageUrlController, 'image:'),
+                                  Text("Image:", style: TextStyle(fontSize: 15,
+                                      fontWeight: FontWeight.bold, color: Colors.black),
+                                  ),
+                                      RaisedButton(child: Text('Upload Image'),
+                                        color: Colors.lightBlue, onPressed: () {
+                                          getImage();
+                                        },
+                                        padding: const EdgeInsets.all(0.0),),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+
+                                      // Text("Audio:", style: TextStyle(fontSize: 15,
+                                      //     fontWeight: FontWeight.bold, color: Colors.black),
+                                      //),
+                                      // RaisedButton(child: Text('Upload Audio'),
+                                      //   color: Colors.lightBlue, onPressed: () {
+                                      //    // getImage();
+                                      //   },
+                                      //   padding: const EdgeInsets.all(0.0),),
                                       SizedBox(
                                         height: 20,
                                       ),
+
                                       FlatButton(
                                         child: Padding(
                                           padding: const EdgeInsets.all(16.0),
@@ -141,14 +186,12 @@ class _EditFruitsState extends State<EditVegetables> {
                                               .reference.update({
                                             "name": nameController.text,
                                             "benefit": benefitController.text,
-                                            //  "ImageUrl": imageUrlController.text,
+                                            "image": imageUrl,
                                           }).whenComplete(() => Navigator.pop(context));
 
                                         },
                                       ),
-
-
-                                    ],
+                                     ],
                                   ),
                                 ),
                               ),
@@ -165,21 +208,23 @@ class _EditFruitsState extends State<EditVegetables> {
                         doc['benefit'],
                         style: TextStyle(color: Colors.black38),
                       ),
-                      // Text(
-                      // doc['name'],
-                      //   style: TextStyle(color: Colors.white),
-                      // ),
+                     //  Text(
+                     //   doc['image'],
+                     //    style: TextStyle(color: Colors.black38),
+                     // ),
 
                     ],
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                     ),
-                    // trailing: Image.network(
-                    // doc['imageUrl'],
-                    //  height: 100,
+                   trailing: Image.network(
+                    doc['image'],
+                    //  height: 3,
                     //  fit: BoxFit.cover,
-                    // width: 100,
-                    // ),
+                    // width: 3,
+                    fit: BoxFit.fill,
+
+                   ),
                   );
                 }
             );
