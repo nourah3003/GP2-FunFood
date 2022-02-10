@@ -1,8 +1,8 @@
 # GP1-FunFood
 
 Fun Food will be a mobile application developed for the Android platform that educates children and makes them attracted to food(In particular Fruits and Vegetables) in a fun way. 
-How to launch the project
 
+How to launch the project?
 The child begins to select the fruit or vegetable that he ate by clicking on the image of the item.
 The Parents, when they want to add, edit or delete, they go to the choice of the type, either fruit or vegetables, and then the three options are shown to them.
 
