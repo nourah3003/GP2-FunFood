@@ -37,7 +37,11 @@ class Childpage extends StatelessWidget {
               height: 80,
               child: RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 8,horizontal: 30),
-                onPressed: (){},
+                onPressed: (){
+
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFruit()));
+
+                },
 
                 color: Colors.green,
                 shape: RoundedRectangleBorder(
