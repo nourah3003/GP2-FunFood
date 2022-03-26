@@ -1,4 +1,4 @@
-# GP1-FunFood
+# GP2-FunFood
 
 Fun Food will be a mobile application developed for the Android platform that educates children and makes them attracted to food(In particular Fruits and Vegetables) in a fun way. 
 
