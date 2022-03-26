@@ -1,4 +1,4 @@
-# food_fun
+# Fun Food
 
 A new Flutter project.
 
