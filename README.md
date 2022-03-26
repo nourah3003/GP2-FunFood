@@ -10,4 +10,4 @@ Technologies used 💻
 1) Android Studio (Android development environment)
 2) Flutter (Software development kit)
 3) Dart (Programing language) 
-4) XAMPP is a software distribution that provides the Apache web server(MySQL database)
+4) XAMPP is a software distribution that provides the Apache web server (MySQL database)
